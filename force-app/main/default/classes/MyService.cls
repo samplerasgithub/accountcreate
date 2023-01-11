@@ -45,6 +45,7 @@ global class MyService {
             acc.AccountNumber=repo;
             insert acc;
             response.statusCode=200;
+            response.responseBody='hi';
             response.responseBody=Blob.valueOf(JSON.serialize(new SFDCResponse('Success','processed successfully')));
         }
         catch(Exception e)
