@@ -1,0 +1,27 @@
+<apex:page standardController="Project__c"  extensions="AddEditProject" >
+    <apex:form >
+     	<apex:pageBlock >
+        	<apex:pageBlockSection >
+            	<apex:inputField value="{!Project__c.Name}"/>
+                <apex:inputField value="{!Project__c.Project_Manager__c}"/>
+                <apex:inputField value="{!Project__c.Client__c}"/>
+                <apex:inputField value="{!Project__c.Allocated_Hours__c}"/>
+                <apex:inputField value="{!Project__c.Estimated_Hours__c}"/>
+                <apex:inputField value="{!Project__c.Billable_Hours__c}"/>
+                <apex:inputField value="{!Project__c.Non_Billable_Hours__c}"/>
+                <apex:inputField value="{!Project__c.Billing_Per_Hour__c}"/>
+                
+                <!--Using Standard Extension Controller--> 
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+            <apex:commandButton action="{!saveRecord}" value="Save the Record"/>
+           <apex:commandButton action="{!saveRecord}" value="Edit the Record"/>
+            </apex:pageBlockButtons>
+            <!--Using Standard Controller-->
+            <!--<apex:pageBlockButtons >
+            <apex:commandButton action="{!saveRecord}" value="Save the Record"/>
+           <apex:commandButton action="{!saveRecord}" value="Edit the Record"/>
+            </apex:pageBlockButtons>-->
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

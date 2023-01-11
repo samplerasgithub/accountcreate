@@ -1,0 +1,11 @@
+<apex:page controller="MyController1" id="mypage">
+    
+    <apex:form >
+        <apex:outputpanel id="mypanel">
+           <apex:outputpanel id="mypanel1" rendered="{!flag}">
+            {!flag}
+            </apex:outputpanel>
+         </apex:outputpanel>
+     <apex:commandButton id="cmd" value="Click here" action="{!myaction}" rerender="mypanel"/>
+    </apex:form>
+</apex:page>

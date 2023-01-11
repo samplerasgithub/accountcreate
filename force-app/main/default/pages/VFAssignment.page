@@ -1,0 +1,20 @@
+<apex:page >
+    <style>
+        .One {
+           background-color: {!$Setup.Preference__c.Colour__c};    
+        }
+    </style>
+        <div class="One">
+    	<center>
+         <b>{!$Label.Notice_Board_Heading}</b>
+        <i>{!$Label.Notice_Body}</i>
+   		 </center>
+        </div>
+   <input type="button" id="bt" value="Change Label Text" onclick="changeLabel()" />
+    <script>
+    function changeLabel()
+    {
+         document.getElementById('bt').value='{!$Label.Notice_Body}';      
+    }
+   </script>
+</apex:page>

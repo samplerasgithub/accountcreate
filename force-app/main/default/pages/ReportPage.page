@@ -1,0 +1,12 @@
+<apex:page controller="ReportController" >
+    <apex:form >
+    <apex:pageBlock >
+       <apex:pageBlockSection title="Custom Picklist Using selectList and selectOptions">
+  <apex:selectList value="{!selectedObject}" multiselect="false" size="1">
+                <apex:selectOptions value="{!objectList}"/>
+                </apex:selectList>
+<apex:outputText value="{!selectedObject}" label="You have selected:"/>
+  </apex:pageBlockSection>
+  </apex:pageBlock>
+        </apex:form>
+</apex:page>

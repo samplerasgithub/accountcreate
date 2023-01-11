@@ -1,0 +1,21 @@
+<apex:page standardController="Task" extensions="Dashboard" >
+    <apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!taskrecords}" var="t">
+<apex:column headerValue="Task Subject">
+<apex:outputText value="{!t.Subject}"/>
+            </apex:column>
+<apex:column headerValue="Task Status">
+<apex:outputText value="{!t.Status}"/>
+            </apex:column>
+<apex:column headerValue="Task Priority">
+<apex:outputText value="{!t.Priority}"/>
+            </apex:column>
+            <apex:column headerValue="Task Due Date">
+<apex:outputText value="{!t.ActivityDate}"/>
+            </apex:column>
+
+        </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

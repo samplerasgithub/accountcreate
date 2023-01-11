@@ -1,0 +1,67 @@
+<apex:page controller="SearchAccount" id="searchaccountpage" >
+    <script type="text/Javascript">
+function getRemoteAccount()
+{
+    var accountName = document.getElementById('accSearchid').value;
+    console.log(accountName);
+    Visualforce.remoting.Manager.invokeAction(
+    '{!$RemoteAction.SearchAccount.getAccount}',
+     accountName,
+        function (result,event)
+        {
+            if(event.status)
+                {
+                    console.log('sucess');
+                    document.getElementById("remoteAcctId").innerHTML = result.Id;
+                    document.getElementById("AccName").innerHTML = result.Name;
+                    // document.getElementById("{!$Component.}") = 
+                    document.getElementById('remoteacctphone').innerHTML = result.Phone;
+                    
+                    }
+               
+        else if(event.status==='exception')
+    	{
+            document.getElementById("responseError") = event.message + '<br></br>' + event.where;
+        console.log('exception');
+        }
+            else
+                {
+                    document.getElementById("responseError") = event.message;
+                    console.log('unhandled');
+            }
+            },
+        {escape:true}
+    );
+}
+    
+</script>
+    	<input type="text" id="accSearchid" placeholder="search" />
+    <div id ="responseError">
+        
+        
+    </div>
+        <input type="button" name="btnsubmit" value="search" id="searchbutton" onClick="getRemoteAccount()" />
+    <apex:pageBlock id="block" title="Account details">
+       <apex:pageBlockSection id="blocksection" columns="2" title="searchResult">
+         <apex:pageBlockSectionItem id="firstitem" >
+             <apex:outputLabel value="Id" />
+             <span id="remoteAcctId"/>
+           </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem id="seconditem" >
+             <apex:outputLabel value="Name" />
+             <span id="AccName"/>
+           </apex:pageBlockSectionItem>
+           <apex:pageBlockSectionItem id="thirditem" >
+             <apex:outputLabel value="Number of Employees" />
+               <apex:outputText id="acctnumemployees" />
+           </apex:pageBlockSectionItem>
+           <apex:pageBlockSectionItem id="fourthitem" >
+             <apex:outputLabel value="Phone" />
+             <span id="remoteacctphone"/>
+           </apex:pageBlockSectionItem>
+              
+        
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+</apex:page>

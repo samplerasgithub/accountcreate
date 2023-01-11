@@ -1,0 +1,43 @@
+<apex:page standardController="Project__c" extensions="AddEditProject" >
+    <apex:form >
+        <apex:pageBlock >
+          <apex:pageBlockTable value="{!projectrecord}" var="t">
+<apex:column headerValue="Project name">
+<apex:outputText value="{!t.Name}"/>
+            </apex:column>
+              <apex:column headerValue="Project Manager name">
+<apex:outputText value="{!t.Project_Manager__c}"/>
+            </apex:column>
+<apex:column headerValue="Client">
+<apex:outputText value="{!t.Client__c}"/>
+            </apex:column>
+<apex:column headerValue="Allocated Hours">
+<apex:outputText value="{!t.Allocated_Hours__c}"/>
+            </apex:column>
+            <apex:column headerValue="Estimated Hours">
+<apex:outputText value="{!t.Estimated_Hours__c}"/>
+            </apex:column>
+<apex:column headerValue="Billable Hours">
+<apex:outputText value="{!t.Billable_Hours__c}"/>
+            </apex:column>
+<apex:column headerValue="Non Billable Hours">
+<apex:outputText value="{!t.Non_Billable_Hours__c}"/>
+            </apex:column>
+              <apex:column headerValue="Billable per Hours">
+<apex:outputText value="{!t.Billing_Per_Hour__c}"/>
+            </apex:column>
+<apex:column headerValue="Total Billing Hours">
+<apex:outputText value="{!t.Total_Billing__c}"/>
+            </apex:column>
+            
+        </apex:pageBlockTable>  
+      
+             <apex:pageBlockButtons >
+            <apex:commandButton action="{!demo}" value="Add Project"/>
+            <apex:commandButton action="{!}" value="Edit Project"/>
+            <apex:commandButton action="{!}" value="Delete Project"/>
+            </apex:pageBlockButtons>
+             </apex:pageBlock>
+         
+    </apex:form>
+</apex:page>

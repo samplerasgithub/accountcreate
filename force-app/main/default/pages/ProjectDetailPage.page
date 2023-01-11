@@ -1,0 +1,109 @@
+<apex:page standardController="Project__c" extensions="ProjectDetail" title="{!$Label.PageTitle}" >
+ <!--<apex:includeScript value="{!URLFOR($Resource.ProjectDetailResource, 'projectJavascript.js')}" />-->
+    
+    <apex:stylesheet value="{!URLFOR($Resource.ProjectDetailResource, 'myZip/style.css')}" />
+   <!--{!$Label.PageTitle}-->
+  
+<script type="text/Javascript">
+    function getRecordDetails()
+    {
+    	var statusname = document.getElementById('searchbar').value;
+        console.log(statusname);
+        Visualforce.remoting.Manager.invokeAction(
+    	'{!$RemoteAction.ProjectDetail.getCase}',
+     	statusname,
+        function (result, event)
+        {
+            if(event.status)
+                {
+                    
+                    console.log('success');
+                    var markup ='<table id="records">';
+                    markup += '<tr><th>Id</th><th>Subject</th><th>Status</th><th>Priority</th></tr>';
+                    for(var i=0;i<result.length;i++)
+                        {
+                            var recordDetail ='<tr>' +
+                                 "<td>" + result[i].Id + "</td>" +
+                                "<td>" + result[i].Subject + "</td>" +
+                                "<td>" + result[i].Status + "</td>" +
+                                "<td>" + result[i].Priority + "</td>" +
+                                '</tr>';
+                            markup += recordDetail;
+                            }
+                    document.getElementById('responseError').innerHTML = markup;
+                                
+                            }
+                    
+               
+        else if(event.status==='exception')
+    	{
+        document.getElementById("responseError") = event.message + '<br></br>' + event.where;
+        console.log('exception');
+        }
+            else
+                {
+                    document.getElementById("responseError") = event.message;
+                    console.log('unhandled');
+            }
+            },
+        {escape:true}
+    );
+     }
+    </script>
+<apex:form >
+    <apex:actionFunction name="SaveProjectRecord" action="{!editrecord}" />
+    <apex:outputText value="{!count}" id="counter" />
+    <apex:actionStatus startText="Saving..." stopText="" id="actionstatusid" ></apex:actionStatus>
+    <apex:actionPoller interval="10" status="actionstatusid" action="{!incrementCounter}" reRender="counter" />
+    <apex:pageBlock title="{!$Label.PageBlockTitle}">
+        <apex:pageBlockSection >
+        <apex:inputField value="{!Project__c.Name}"/>
+                <apex:inputField value="{!Project__c.Project_Manager__c}"/>
+                <apex:inputField value="{!Project__c.Client__c}"/>
+                <apex:inputField value="{!Project__c.Allocated_Hours__c}"/>
+                <apex:inputField value="{!Project__c.Estimated_Hours__c}"/>
+                <apex:inputField value="{!Project__c.Billable_Hours__c}"/>
+                <apex:inputField value="{!Project__c.Non_Billable_Hours__c}"/>
+                <apex:inputField value="{!Project__c.Project_Status_Image__c}"/>
+            	<apex:inputField value="{!Project__c.Is_Active__c}" />
+            
+            <apex:outputPanel id="accDetailOuter">
+            <apex:outputPanel id="accDetailInner" rendered="{!displayInputText}">
+                <apex:pageBlock title="Account Billing Address" id="pageblocksectionid">
+                    <apex:outputText value="{!projectinfo.Client__r.BillingCity}" />
+                     <apex:outputText value="{!projectinfo.Client__r.BillingState}" />
+                     <apex:outputText value="{!projectinfo.Client__r.BillingPostalCode}" />
+                     <apex:outputText value="{!projectinfo.Client__r.BillingCountry}" />
+                </apex:pageBlock>
+                </apex:outputPanel>
+            </apex:outputPanel>
+                
+               
+        </apex:pageBlockSection>
+        <apex:pageBlockButtons > 
+			 <apex:commandButton value="Edit the Record" onClick="SaveProjectRecord()" reRender="accDetailOuter" />
+            
+            </apex:pageBlockButtons>
+    <apex:pageBlockTable value="{!taskList}" var="pro">
+<apex:column headerValue="Task Subject">
+<apex:outputText value="{!pro.Subject}"/>   
+</apex:column>
+        <apex:column headerValue="Task Status">
+<apex:outputText value="{!pro.Status}"/>   
+</apex:column>
+        <apex:column headerValue="Task Priority">
+<apex:outputText value="{!pro.Priority}"/>   
+</apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    </apex:form>   
+    
+        <input type="text" id="searchbar" placeholder="Data to search" />
+        <input type="button" id="searchbtn" value="Generate Case List" onclick="getRecordDetails()"/>
+        
+   
+    <div id ="responseError">
+        
+        
+    </div>
+</apex:page>

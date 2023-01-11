@@ -1,0 +1,27 @@
+<apex:page standardController="Case"  extensions="AddEditTask" >
+    <apex:form >
+     	<apex:pageBlock >
+        	<apex:pageBlockSection >
+            	<apex:inputField value="{!Case.Estimated_Hours__c}"/>
+                <apex:inputField value="{!Case.Billable_Hours__c}"/>
+                <apex:inputField value="{!Case.Non_Billable_Hours__c}"/>
+                <apex:inputField value="{!Case.Subject}"/>
+                <apex:inputField value="{!Case.OwnerId}"/>
+                <apex:inputField value="{!Case.Description}"/>
+                <apex:inputField value="{!Case.Acceptance_Criteria__c}"/>
+                <apex:inputField value="{!Case.Status}"/>
+                <apex:inputField value="{!Case.Assigned_Date__c}"/>
+                <apex:inputField value="{!Case.Due_Date__c}"/>
+                <apex:inputField value="{!Case.Completed_Date__c}"/>
+                <apex:inputField value="{!Case.Report_To__c}"/>
+                <apex:inputField value="{!Case.Type}"/>
+                 
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+            <apex:commandButton action="{!saveRecord}" value="Save the Record"/>
+           
+            <apex:commandButton action="{!saveRecord}" value="Edit the Record"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

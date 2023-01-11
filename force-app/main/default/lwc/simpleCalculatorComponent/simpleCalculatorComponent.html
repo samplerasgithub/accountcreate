@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Simple Calculator">
+    <lightning-input type="Text" label="Enter first value :" onchange={Getfirstvalue}></lightning-input>
+    <lightning-input type="Text" label="Enter second value :" onchange={Getsecondvalue}></lightning-input>
+    <lightning-input type="Text" label="Total :" value={addvalue} readonly="true"></lightning-input>
+    <div class="slds-col slds-text-align_left" style="padding-top: 20px;">
+        <lightning-button class="slds-m-left_medium" variant="brand" label="Add" title="Primary action" onclick={onAddClick}></lightning-button>
+        <lightning-button class="slds-m-left_medium" variant="brand" label="Subtract" title="Primary action" onclick={onSubtractClick}></lightning-button>
+        <lightning-button class="slds-m-left_medium" variant="brand" label="Multiply" title="Primary action" onclick={onMultiplyClick}></lightning-button>
+        <lightning-button class="slds-m-left_medium" variant="brand" label="Divide" title="Primary action" onclick={onDivideClick}></lightning-button>
+        </div>
+       
+ 
+    </lightning-card>
+</template>

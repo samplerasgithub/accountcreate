@@ -1,0 +1,58 @@
+<apex:page controller="DynamicTableController123">
+    <apex:form >
+        <apex:actionFunction name="ObjectFileds" action="{!ObjectFields}"/>
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Select Object"/>
+                    <apex:selectList multiselect="false" size="1" value="{!SelectedObject}" onchange="ObjectFileds();">
+                        <apex:selectOption itemLabel="--None--" itemValue="--None--"/>
+                        <apex:selectoptions value="{!supportedObject}" />
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                <apex:commandButton value="Test" action="{!test}" rerender="out" status="status"/>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Select Field"/>
+                    <apex:selectList multiselect="true" size="5" value="{!SelectedFields}">
+                        <apex:selectOption itemLabel="--None--" itemValue="--None--"/>
+                        <apex:selectoptions value="{!fieldLableAPI}" />
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                
+                <apex:outputPanel id="out">
+                    <b>You have selected:</b>
+                    <apex:dataList value="{!SelectedFields}" var="c">{!c}</apex:dataList>
+                </apex:outputPanel>           
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    
+                    <apex:outputLabel value="Select limit"/>
+                    <apex:selectList multiselect="true" size="5" value="{!SelectedLimit}">
+                        <apex:selectOption itemLabel="500" itemValue="500"/>
+                        <apex:selectOption itemLabel="1000" itemValue="1000"/>
+                        <apex:selectOption itemLabel="5000" itemValue="5000"/>
+                        <apex:selectOption itemLabel="50000" itemValue="50000"/>
+                    </apex:selectList>
+                    
+                </apex:pageBlockSectionItem>
+                <apex:commandButton value="Fetch Query" action="{!FetchQuery}"/> 
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="Execute SOQL QUERY">
+            
+            <apex:inputTextarea value="{!querydemo}"/>
+            <apex:commandButton value="Execute Query" action="{!executeQuery}"/> 
+            
+            <apex:pageBlockTable value="{!queryList}" var="string" id="theRepeat">
+                <apex:repeat value="{!SelectedFields}" var="selectfieldData">
+                    
+                    <apex:column value="{!string[selectfieldData]}" id="theValue"/>
+                </apex:repeat>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
