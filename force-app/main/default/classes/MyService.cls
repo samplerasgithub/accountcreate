@@ -49,7 +49,7 @@ global class MyService {
             response.statusCode=200;
             response.responseBody=Blob.valueOf(JSON.serialize(new SFDCResponse('Success','processed successfully')));
             System.debug(response);
-            System.debug(responseBody);
+           // System.debug(responseBody);
 
         }
         catch(Exception e)
