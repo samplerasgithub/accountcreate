@@ -1,7 +1,7 @@
 @RestResource(urlMapping='/myservice')
 global class MyService {
     @HttpPost
-    global static void doPost () {
+    global static void doPost() {
         try
         {
             RestRequest request = RestContext.request;
