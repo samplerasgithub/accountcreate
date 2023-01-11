@@ -2,7 +2,7 @@
 global class MyService {
     @HttpPost
     global static void doPost() {
-        
+
         try
         {
             RestRequest request = RestContext.request;
@@ -40,6 +40,7 @@ global class MyService {
                     System.debug(repo);
                 }
             }
+            System.debug('ps====>'+ps);
             Account acc= new Account();
             acc.Name=ps!=null?ps.name:'';
             acc.Site=hc!=null?hc.url:'';
