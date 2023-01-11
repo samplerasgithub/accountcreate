@@ -43,7 +43,7 @@ global class MyService {
             System.debug('ps====>'+ps);
             Account acc= new Account();
             acc.Name=ps!=null?ps.name:'';
-            acc.Site=hc!=null?hc.url:'';
+           // acc.Site=hc!=null?hc.url:'';
             acc.AccountNumber=repo;
             insert acc;
             response.statusCode=200;
