@@ -6,7 +6,7 @@ global class MyService {
         {
             RestRequest request = RestContext.request;
             RestResponse response = RestContext.response;
-            String hashedval = request.headers.get('X-hub-signature-256');
+            String hashedval = request.headers.get('X-Hub-Signature-256');
             System.debug('hashedval'+hashedval);
             Blob bB= request.requestBody;
             System.debug(bB.toString());
